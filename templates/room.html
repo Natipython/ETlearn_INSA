@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> COURSES COMING SOON... </title>
+    <style>
+        body {
+            font-family: Ubuntu, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background: #00061a;
+            color: skyblue;
+            padding: 10px;
+            text-align: center;
+        }
+        
+        nav {
+            text-align: center;
+            margin: top;
+            border-radius: 200px;
+        }
+        nav a {
+            margin: 0 1em;
+            text-decoration: none;
+            color: skyblue;
+            background: #00061a;
+            
+        }
+
+        #home {
+            padding: 15px;
+            border-radius: 10px;
+        }
+        #course {
+            padding: 15px;
+            border-radius: 10px;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+       
+        #login {
+            padding: 15px;
+            border-radius: 10px;
+        }
+        #contact {
+            padding: 15px;
+            border-radius: 10px;
+        }
+        footer {
+            background: lightgreen;
+            text-align: center;
+            padding: 12px;
+            margin-top: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1> Courses are Coming Soon !
+        </h1>
+    </header>
+    <nav>
+        <a href="{% url "home" %}" id="home">Home</a>
+         <a href="{% url "courses" %}" id="course"> Courses </a>
+         <a href="{% url "login" %}" id="login"> Login </a>
+         <a href="{% url "contact" %}" id="contact"> CUSTOMER FEEDBACK </a>
+     </nav>
+
+    <h2><ul> {{ msg }} </ul></h2> 
+
+     <form class="chat-box" method="post" action="">
+        {% csrf_token %}
+        <div class="top">
+            
+            
+            
+        </div>
+        <div class="bottom">
+            <input type="text" class="msg-input">
+            <button type="button" class="send-msg">Send</button>
+        </div>
+    </form>
+
+     <style>
+        .body {
+            width: 100%;
+            height: 100%;
+        }
+        .top::-webkit-scrollbar {
+            display: none;
+        }
+        .chat-box {
+            height: 50vh;
+            width: 70vh;
+            background-color: black;
+            margin: 0 auto;
+            margin-top: 15vh;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: end;
+            align-items: center;
+            padding-bottom: 15px;
+            border-radius: 10px;
+        }
+        .bottom {
+            background-color: #333;
+            padding: .5rem;
+            border-radius: 10px;
+            width: 90%;
+            
+            position: relative;
+            top: 2.25%;
+        }
+        input {
+            width: 80%;
+            height: 100%;
+            background: transparent;
+            border: none;
+            outline: none;
+            color: white;
+        }
+        .send-msg {
+            width: 10vh;
+            position: absolute;
+            right: 5px;
+            bottom: 50%;
+            translate: 0 50%;
+            height: 80%;
+            border-radius: 8px;
+            background: skyblue;
+            border: none;
+            color: black;
+            font-weight: bolder;
+            cursor: pointer;
+        }
+        .top {
+            display: flex;
+            flex-direction: column;
+            width: 95%;
+            height: 100%;
+            padding: .5rem;
+            gap: 1rem;
+            overflow: scroll;
+        }
+        .sent-text {
+            position: relative;
+            padding: .3rem;
+            width: 85%;
+            height: fit-content;
+            border: 2px solid skyblue;
+            border-radius: 12px;
+            box-shadow: 0 0 .4cm rgba(115, 177, 202, 0.966);
+            
+            
+        }
+        .recieved-text {
+            position: relative;
+            
+            padding: .3rem;
+            width: 85%;
+            height: fit-content;
+            border: 2px solid rgb(0, 255, 85);
+            border-radius: 12px;
+            box-shadow: 0 0 .4cm rgba(0, 255, 64, 0.774);
+        }
+        
+        .sent-text p, .recieved-text p {
+            width: 97%;
+            
+        }
+
+        /*  */
+     </style>
+
+    <script>
+        
+
+
+
+
+        document.addEventListener('DOMContentLoaded', function() {
+            let topr = document.querySelector(".top");
+            let msg = document.querySelector(".msg-input");
+            let send_btn = document.querySelector(".send-msg");
+
+            send_btn.addEventListener('click', function() {
+                if (!msg.value.trim()) {
+                    alert('Input cannot be empty');
+                    return;
+                }
+
+                topr.innerHTML += `<div class="sent-text">
+                    <p>${msg.value}</p>
+                </div>` 
+
+                const data = new FormData();
+                data.append('input_data', msg.value);
+                data.append('csrfmiddlewaretoken', '{{ csrf_token }}');
+
+                fetch(`{% url "room" course %}`, {
+                    method: 'POST',
+                    body: data
+                })
+                .then(response => response.json())
+                .then(data => {
+                    topr.innerHTML += `<div class="received-text">
+                        <p>${data.message}</p>
+                    </div>`;
+                    msg.value = ''; 
+                })
+                .catch(error => {
+                    console.log('Error: ' + error);
+                });
+            });
+        });
+        </script>
+
+    <footer>
+        <p>&copy; 2024 Free Online Courses</p>
+    </footer>
+
+    
+</body>
+</html>

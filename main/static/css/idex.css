@@ -1,0 +1,73 @@
+body {
+    
+    font-family: Ubuntu, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+header {
+    background: #00061a;
+    color: darkcyan;
+    padding: 10px;
+    text-align: center;
+}
+nav {
+    text-align: center;
+    margin: top;
+    border-radius: 200px;
+}
+nav a {
+    margin: 0 1em;
+    text-decoration: none;
+    color: darkcyan;
+    background: #00061a;
+}
+.container {
+    color: #00061a;
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.course {
+    background-color: #00061a;
+    color: darkcyan;
+    border-radius: 15px;
+    border: 3px solid #ddd;
+    margin: 1em 0;
+    padding: 1em;
+    border-color: #00061a;
+    width: fit-content;
+}
+footer {
+    background: darkcyan;
+    text-align: center;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+#home {
+    padding: 15px;
+    border-radius: 10px;
+}
+#course {
+    padding: 15px;
+    border-radius: 10px;
+}
+
+#login {
+    padding: 15px;
+    border-radius: 10px;
+}
+#contact {
+    padding: 15px;
+    border-radius: 10px;
+}
+h2 {
+    font-size: 20px;
+    
+}
+button {
+    color: darkcyan;
+    background: transparent;
+    border: none;
+}

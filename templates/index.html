@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> ET_Learners </title>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    
+</head>
+
+<style>
+    body {
+        font-family: Ubuntu, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    header {
+        background: #00061a;
+        color: darkcyan;
+        padding: 10px;
+        text-align: center;
+    }
+    nav {
+        text-align: center;
+        margin: top;
+        border-radius: 200px;
+    }
+    nav a {
+        margin: 0 1em;
+        text-decoration: none;
+        color: darkcyan;
+        background: #00061a;
+    }
+    .container {
+        color: #00061a;
+        padding: 2em;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .course {
+        background-color: #00061a;
+        color: darkcyan;
+        border-radius: 15px;
+        border: 3px solid #ddd;
+        margin: 1em 0;
+        padding: 1em;
+        border-color: #00061a;
+        width: fit-content;
+    }
+    footer {
+        background: darkcyan;
+        text-align: center;
+        padding: 10px;
+        margin-top: 20px;
+    }
+    
+    #home {
+        padding: 15px;
+        border-radius: 10px;
+    }
+    #course {
+        padding: 15px;
+        border-radius: 10px;
+    }
+    
+    #login {
+        padding: 15px;
+        border-radius: 10px;
+    }
+    #contact {
+        padding: 15px;
+        border-radius: 10px;
+    }
+    h2 {
+        font-size: 20px;
+        
+    }
+    button {
+        color: darkcyan;
+        background: transparent;
+        border: none;
+    }
+</style>
+
+<body>
+
+
+        <header>
+            <h1> ET_Learners </h1>
+        </header>
+        <nav>
+            <a href="{% url "home" %}" id="home"> Home </a>
+            <a href="{% url "courses" %}" id="course"> Courses </a>
+            <a href="{% url "login" %}" id="login"> Login </a>
+            <a href="{% url "contact" %}" id="contact"> COSTOMER FEEDBACK </a>
+        </nav>
+    <div class="container">
+        <h2><u><ul><li> Unlock your potential with us—where learning meets limitless possibilities. <br><li> Dive into our courses and transform your knowledge into success. </li></ul></u></h2>
+        
+        <div class="w">
+            <div class="course">
+                <button onclick="location.href = '{% url "courses" %}'">
+                <h3> "The best way to predict the future is to create it.",      Peter Drucker</h3>
+                <p>: Find your hobby or advance it! </p>
+                </button>
+            </div>
+            <div class="course">
+                <button onclick="location.href = '{% url "courses" %}'">
+                <h3> "An investment in knowledge pays the best interest.",    Benjamin Franklin </h3>
+                <p>: start your journey in the business world, here.</p>
+                </button>
+            </div>
+            <div class="course">
+                <button onclick="location.href = '{% url "courses" %}'">
+                <h3> "The beautiful thing about learning is that no one can take it away from you.",     B.B. King</h3>
+                <p>: start your journey in the business world, here.</p>
+                </button>
+            </div>
+        </div>
+
+
+    </div>
+    <footer>
+        <p>&copy; 2024 Free Online Courses</p>
+    </footer>
+</body>
+</html>
